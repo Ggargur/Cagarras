@@ -6,27 +6,27 @@ public class Way : MonoBehaviour
 {
     
     [SerializeField] private Vector3 TurningSpeed;
-    [SerializeField] private Hoop[] hoop;
+    [SerializeField] private CollisionHandler handler;
+    public Hoop[] hoop;
 
     [Header("Colors")]
     [SerializeField] private Color InicialColor;
     [SerializeField] private Color AchivedColor;
     [SerializeField] private Color NextColor;
 
-    private ParticleSystem[] _childps;
+    private MeshRenderer[] _childps;
     private Transform[] _childt;
 
     public bool HasBeenFinished;
 
     [System.NonSerialized] public int HowManyHoops;
-    private int HoopsIndex = -1;
+    public int HoopsIndex = -1;
     private void Awake()
     {
-        _childps = GetComponentsInChildren<ParticleSystem>();
-        foreach(ParticleSystem ps in _childps)
+        _childps = GetComponentsInChildren<MeshRenderer>();
+        foreach(var mr in _childps)
         {
-            var trails = ps.trails;
-            trails.colorOverLifetime = InicialColor;
+            mr.material.color = InicialColor;
         }
 
         _childt = GetComponentsInChildren<Transform>();
@@ -34,7 +34,6 @@ public class Way : MonoBehaviour
         hoop = GetComponentsInChildren<Hoop>();
         HowManyHoops = hoop.Length;
         ChangeNext();
-        StartCoroutine(TurnHoops());
     }
 
     public void ChangeNext()
@@ -45,31 +44,21 @@ public class Way : MonoBehaviour
             if (HoopsIndex > 0)
             {
                 hoop[HoopsIndex - 1].isNext = false;
-                _childps[HoopsIndex - 1].Stop();
-                var mainold = _childps[HoopsIndex - 1].main;
-                mainold.loop = false;
-                var oldTrails = _childps[HoopsIndex - 1].trails;
-                oldTrails.colorOverLifetime = AchivedColor;
+                var oldTrails = _childps[HoopsIndex - 1].material;
+                oldTrails.color = AchivedColor;
                 StartCoroutine(DisableOld(hoop[HoopsIndex - 1]));
                 AudioManager.PlaySound(AudioManager.Sound.CompleteTask, 0);
             }
-            hoop[HoopsIndex].isNext = true;
-            _childps[HoopsIndex].Play();
-            var trail = _childps[HoopsIndex].trails;
-            trail.colorOverLifetime = NextColor;
+            if(HoopsIndex < HowManyHoops)
+            {
+                hoop[HoopsIndex].isNext = true;
+                var trail = _childps[HoopsIndex].material;
+                trail.color = NextColor;
+            }
         }
         if(HoopsIndex == HowManyHoops - 1)
             HasBeenFinished = true;
-    }
-    IEnumerator TurnHoops()
-    {
-        while (true)
-        {
-            foreach (Transform _t in _childt)
-                _t.Rotate(TurningSpeed * Time.deltaTime);
-            transform.Rotate(-TurningSpeed * Time.deltaTime);
-            yield return null;
-        }
+        handler.UpdateRestartPosition();
     }
     IEnumerator DisableOld(Hoop hoop)
     {

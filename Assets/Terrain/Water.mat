@@ -12,9 +12,9 @@ Material:
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -42,10 +42,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_1c02a4dcde20461b80ea7a998cc67bb6: 1.65
-    - Vector1_1e187ca1e8304e70a30f083a460acb39: 0.25
-    - Vector1_caa4301e83f345cdbf5d9d7710b9be12: 0.69
-    - _normalStrengh: 0.203
-    - _smoothness: 0.356
+    - Vector1_1e187ca1e8304e70a30f083a460acb39: 0.1
+    - Vector1_caa4301e83f345cdbf5d9d7710b9be12: 0.06
+    - _normalStrengh: 0.3
+    - _smoothness: 0.186
     m_Colors:
     - _deepWaterColor: {r: 0.2588235, g: 0.3055276, b: 0.7176471, a: 1}
     - _shalowWaterColor: {r: 0.17647058, g: 0.5960598, b: 1, a: 1}

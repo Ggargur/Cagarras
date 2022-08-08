@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 8d928aad7b5fbda48ae01287e65c4645
-  - enabled: 1
     path: Assets/Scenes/CagarrasPlaceHolder.unity
     guid: ef78749edc25ee8449906439549462a9
   m_configObjects:

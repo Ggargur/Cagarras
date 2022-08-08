@@ -23,6 +23,7 @@ public class Flying : MonoBehaviour
     [Header("References")]
     [SerializeField] InputActionReference leftControllerVelocity;
     [SerializeField] InputActionReference rightControllerVelocity;
+    [SerializeField] GameObject SpeedParticles;
 
     [SerializeField] Transform trackingReference;
 
@@ -48,17 +49,21 @@ public class Flying : MonoBehaviour
         //_rigidbody.constraints = RigidbodyConstraints.FreezeRotation;   
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
-        //print(transform.localRotation.eulerAngles);
-        //if (IsGamePaused && transform.localRotation.eulerAngles.x >= 90 - OffsetReturnMenu && transform.localRotation.eulerAngles.x <= 270 - OffsetReturnMenu)
-        //    transform.rotation = new Quaternion(0, 0, 0, 0);
         if (!IsGamePaused)
         {
+            var axisL = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger,OVRInput.Controller.LHand);
+            var axisR = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RHand);
+            var axis = axisL > 0 || axisR > 0 ? (axisL + axisR) / 2.0f : 0;
+            var  velocitythisframe = constantSpeed * (axis + 1.0f);
+            //print(velocitythisframe);
+            SpeedParticles.SetActive(axis > 0);
+
             if (trackingReference.forward.y > 0)
-                _rigidbody.AddForce(new Vector3(trackingReference.forward.x, 0, trackingReference.forward.z) * constantSpeed);
+                _rigidbody.velocity = (new Vector3(trackingReference.forward.x, 0, trackingReference.forward.z) * velocitythisframe);
             else
-                _rigidbody.AddForce(trackingReference.forward * constantSpeed);
+                _rigidbody.velocity = trackingReference.forward * velocitythisframe;
 
             if (CanFlap)
             {

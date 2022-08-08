@@ -11,6 +11,7 @@ public static class AudioManager
         Poop,
         PickupObject,
         DropObject,
+        Damage,
     }
 
     public static GameObject PlayRandomSound(Sound sound)

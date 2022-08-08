@@ -10,28 +10,32 @@ public class PoopObjective : MonoBehaviour
     [SerializeField] private Color InitialColor;
     [SerializeField] private Color FinishedColor;
 
-    private ParticleSystem _particleSystem;
+    private MeshRenderer _meshRenderer;
 
     public bool HasBeenFinished;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == poop.name)
         {
-            var trail = _particleSystem.trails;
-            trail.colorOverLifetime = FinishedColor;
+            var trail = _meshRenderer.material;
+            trail.color = FinishedColor;
             AudioManager.PlaySound(AudioManager.Sound.CompleteTask, 0);
             HasBeenFinished = true;
         }
     }
     private void Awake()
     {
-        _particleSystem = GetComponent<ParticleSystem>();
-        var trail = _particleSystem.trails;
-        trail.colorOverLifetime = InitialColor;
-    }
-
-    private void Update()
-    {
-        transform.Rotate(TurningSpeed * Time.deltaTime);
+        _meshRenderer = GetComponent<MeshRenderer>();
+        if(_meshRenderer != null)
+        {
+            var trail = _meshRenderer.material;
+            trail.color = InitialColor;
+        }
+        else
+        {
+            _meshRenderer = GetComponentInChildren<MeshRenderer>();
+            var trail = _meshRenderer.material;
+            trail.color = InitialColor;
+        }
     }
 }

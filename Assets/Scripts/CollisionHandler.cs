@@ -7,32 +7,40 @@ public class CollisionHandler : MonoBehaviour
     private Rigidbody _rb;
     private Flying _fly;
     private float normalConstantSpeed;
+    private Vector3 _intialPosition;
+    private Quaternion _initialRotation;
 
-    [SerializeField] private float flopBoost = 100;
+    [SerializeField] private float Cooldown = 3;
     [SerializeField] GameObject trackingReference;
+    [SerializeField] GameObject _way;
+    [SerializeField] LayerMask Layer;
+    private Quaternion _rotation;
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _fly = GetComponent<Flying>();
-
-        normalConstantSpeed = _fly.constantSpeed;
+        UpdateRestartPosition();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        _rb.constraints = RigidbodyConstraints.FreezePositionX;
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        _rb.constraints = RigidbodyConstraints.FreezeRotation;
-
-        trackingReference.transform.rotation = new Quaternion(trackingReference.transform.rotation.x, 0, trackingReference.transform.rotation.z, trackingReference.transform.rotation.w);
-        _fly.wingFlapForce += flopBoost;
-        _fly.constantSpeed = 0;
+        if(collision.gameObject.CompareTag("Terrain"))
+        {
+            StartCoroutine(WaitToBeTeleported());
+            AudioManager.PlaySound(AudioManager.Sound.Damage, 0);
+        }
     }
 
-    private void OnCollisionExit(Collision collision)
+    IEnumerator WaitToBeTeleported()
     {
-        _rb.constraints = RigidbodyConstraints.None;
-        _fly.constantSpeed = normalConstantSpeed;
-        _fly.wingFlapForce -= flopBoost;
+        yield return new WaitForSeconds(Cooldown);
+        transform.rotation = _initialRotation;
+        transform.position = _intialPosition; 
+    }
+
+    public void UpdateRestartPosition()
+    {
+        _initialRotation = transform.rotation;
+        _intialPosition = transform.position;
     }
 }

@@ -25,7 +25,7 @@ public class Pooper : MonoBehaviour
         if((rightSelectButtonState != 0 && leftSelectButtonState != 0) && IsSelectDown == false)
         {
             GameObject poop = Instantiate(TemplatePoop);
-            poop.transform.SetParent(TemplatePoop.transform);
+            //poop.transform.SetParent(TemplatePoop.transform);
             poop.transform.position = transform.position - poopOffset;
             poop.name = "Poop";
             IsSelectDown = true;
