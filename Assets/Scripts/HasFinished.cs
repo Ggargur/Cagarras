@@ -11,14 +11,17 @@ public class HasFinished : MonoBehaviour
     private bool gameOver = false;
     void Update()
     {
-        if(wayScript.HasBeenFinished && poopObjectiveScript.HasBeenFinished)
+        if(wayScript.HasBeenFinished && poopObjectiveScript.HasBeenFinished && audiosource == null)
         {
+            if (audiosource == null && gameOver)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                return;
+            }
             audiosource = AudioManager.PlaySound(AudioManager.Sound.CompleteTask, 1);
             gameOver = true;
             print(Timer.Instance.FormatedTime);
             Timer.Instance.isTimerOn = false;
         }
-        if (audiosource == null && gameOver)
-            SceneManager.LoadScene("CagarrasPlaceHolder");
     }
 }
