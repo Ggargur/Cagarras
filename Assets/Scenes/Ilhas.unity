@@ -1849,6 +1849,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -5395
       objectReference: {fileID: 0}
+    - target: {fileID: 4556055343130837824, guid: daa48379a23524b45b34f261cf2eb838,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556055343130837824, guid: daa48379a23524b45b34f261cf2eb838,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556055343130837824, guid: daa48379a23524b45b34f261cf2eb838,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556055343130837827, guid: daa48379a23524b45b34f261cf2eb838,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4556055343813336249, guid: daa48379a23524b45b34f261cf2eb838,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4556055343813336249, guid: daa48379a23524b45b34f261cf2eb838,
         type: 3}
       propertyPath: m_StaticEditorFlags

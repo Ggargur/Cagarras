@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CagarrasPlaceHolder.unity
-    guid: ef78749edc25ee8449906439549462a9
+    path: Assets/Scenes/Ilhas.unity
+    guid: 51da48e29b951e647838182f80b96204
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
