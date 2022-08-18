@@ -17,10 +17,12 @@ public class Way : MonoBehaviour
     private MeshRenderer[] _childps;
     private Transform[] _childt;
 
-    public bool HasBeenFinished;
 
     [System.NonSerialized] public int HowManyHoops;
     public int HoopsIndex = -1;
+
+    public bool HasBeenFinished;
+
     private void Awake()
     {
         _childps = GetComponentsInChildren<MeshRenderer>();

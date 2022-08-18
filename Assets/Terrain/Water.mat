@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _secondNormal:
-        m_Texture: {fileID: 2800000, guid: c21511cdc86c86847bdae740c8b071da, type: 3}
+        m_Texture: {fileID: 2800000, guid: a3a29464e7ed5a04d9ed191b3caa203c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -42,9 +42,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_1c02a4dcde20461b80ea7a998cc67bb6: 1.65
-    - Vector1_1e187ca1e8304e70a30f083a460acb39: 0.1
+    - Vector1_1e187ca1e8304e70a30f083a460acb39: 0.15
     - Vector1_caa4301e83f345cdbf5d9d7710b9be12: 0.06
-    - _normalStrengh: 0.3
+    - _normalStrengh: 0.17
     - _smoothness: 0.186
     m_Colors:
     - _deepWaterColor: {r: 0.2588235, g: 0.3055276, b: 0.7176471, a: 1}

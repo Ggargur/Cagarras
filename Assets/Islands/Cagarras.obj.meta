@@ -3,7 +3,12 @@ guid: 560840bf68a4d6a40af07c9bbf53d315
 ModelImporter:
   serializedVersion: 20300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cagarra_Comprida_Palmas_Lajes_CAGARRA
+    second: {fileID: 2100000, guid: e580fdbc73b43f247a19c798dbc30161, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

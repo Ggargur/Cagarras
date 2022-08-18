@@ -76,6 +76,12 @@ public class Flying : MonoBehaviour
                     GainAltitude();
                     AudioManager.PlayRandomSound(AudioManager.Sound.WingFlap);
                 }
+                if (Input.GetMouseButton(0))
+                {
+                    trueVelocity = new Vector3(0, 1, 0);
+                    GainAltitude();
+                    AudioManager.PlayRandomSound(AudioManager.Sound.WingFlap);
+                }
             }
             if (useGravity)
                 _rigidbody.AddForce(new Vector3(0, -dragForce));

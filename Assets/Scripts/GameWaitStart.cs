@@ -7,6 +7,7 @@ public class GameWaitStart : MonoBehaviour
     public Flying Player;
     [SerializeField]  public GameObject Audios;
     public List<GameObject> Objectives;
+    private int _counter;
 
     public void GameStart(bool state)
     {
@@ -24,7 +25,9 @@ public class GameWaitStart : MonoBehaviour
 
     void Update()
     {
-        if (Player.IsFlappingWings() != Vector3.zero || Input.GetKeyDown(KeyCode.Space))
+        if (Player.IsFlappingWings() != Vector3.zero && _counter < 3)
+            _counter++;
+        if (_counter >= 3 || Input.GetKeyDown(KeyCode.Space))
             GameStart(true);
 
     }

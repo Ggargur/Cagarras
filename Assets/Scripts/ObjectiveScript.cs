@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectiveScript : MonoBehaviour
@@ -12,7 +10,6 @@ public class ObjectiveScript : MonoBehaviour
     {
         if(IsBeingHeld)
         {
-            // Implement force on tracking... maybe...
             transform.position = Player.transform.position - positionOffset;
         }
     }

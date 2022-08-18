@@ -100,7 +100,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 7e89e80fce8fc06478c726f2f3de7863, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 3106341008
+    rgba: 4278190080
 --- !u!114 &1958280310934419321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 7e89e80fce8fc06478c726f2f3de7863, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 3106341008
+    rgba: 4278190080
 --- !u!1 &1958280311452825108
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 7e89e80fce8fc06478c726f2f3de7863, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4280746128
+    rgba: 4281401088
 --- !u!1 &1958280311645730715
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +718,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: 7e89e80fce8fc06478c726f2f3de7863, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 3106341008
+    rgba: 4278190080
 --- !u!114 &1958280312000710924
 MonoBehaviour:
   m_ObjectHideFlags: 0
