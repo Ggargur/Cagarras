@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     public GameObject ScoreShower;
     public static ScoreManager Instance;
 
-    void Start()
+    void Awake()
     {
         if(Instance == null)
             Instance = this;

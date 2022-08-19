@@ -13,9 +13,8 @@ public class CollectatonHoop : MonoBehaviour
 
     private void Awake()
     {
-        var renderer = GetComponent<MeshRenderer>();
-        _material = renderer.material;
-        _material.color = InicialColor;
+        var renderer = GetComponentInChildren<MeshRenderer>();
+        renderer.material.color = InicialColor;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,7 +22,8 @@ public class CollectatonHoop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ScoreManager.Instance.score++;
-            _material.color = DoneColor;
+            var renderer = GetComponentInChildren<MeshRenderer>();
+            renderer.material.color = DoneColor;
             isDone = true;
             AudioManager.PlayRandomSound(AudioManager.Sound.CompleteTask);
             StartCoroutine(DisableOld());

@@ -14,9 +14,12 @@ public class GameWaitStart : MonoBehaviour
         foreach (GameObject obj in Objectives)
             obj.SetActive(state);
         Player.IsGamePaused = !state;
-        this.gameObject.SetActive(!state);
+        gameObject.SetActive(!state);
         Audios.SetActive(state);
-        Timer.Instance.isTimerOn = state;
+
+        if(state)
+            CountDownTimer.Instance.IsOn = state;
+        //Timer.Instance.isTimerOn = state;
     }
     void Start()
     {

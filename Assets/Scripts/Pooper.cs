@@ -22,7 +22,7 @@ public class Pooper : MonoBehaviour
         rightSelectButtonState = rightControllerReference.action.ReadValue<float>();
         leftSelectButtonState = leftControllerReference.action.ReadValue<float>();
 
-        if((rightSelectButtonState != 0 && leftSelectButtonState != 0) && IsSelectDown == false)
+        if (((rightSelectButtonState != 0 && leftSelectButtonState != 0) && IsSelectDown == false) || Input.GetKeyDown(KeyCode.Space))
         {
             GameObject poop = Instantiate(TemplatePoop);
             //poop.transform.SetParent(TemplatePoop.transform);
@@ -31,7 +31,7 @@ public class Pooper : MonoBehaviour
             IsSelectDown = true;
             AudioManager.PlayRandomSound(AudioManager.Sound.Poop);
         }
-        else if((rightSelectButtonState == 0 && leftSelectButtonState == 0))
+        else if ((rightSelectButtonState == 0 && leftSelectButtonState == 0))
         {
             IsSelectDown = false;
         }
