@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
-    private Rigidbody _rb;
-    private Flying _fly;
-    private float normalConstantSpeed;
+    //private Rigidbody _rb;
+    //private Flying _fly;
+    //private float normalConstantSpeed;
     private Vector3 _intialPosition;
     private Quaternion _initialRotation;
 
@@ -17,8 +17,8 @@ public class CollisionHandler : MonoBehaviour
     private Quaternion _rotation;
     private void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-        _fly = GetComponent<Flying>();
+        //_rb = GetComponent<Rigidbody>();
+        //_fly = GetComponent<Flying>();
         UpdateRestartPosition();
     }
 

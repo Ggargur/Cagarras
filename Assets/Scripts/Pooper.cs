@@ -17,12 +17,18 @@ public class Pooper : MonoBehaviour
     [SerializeField] GameObject TemplatePoop;
     [SerializeField] Vector3 poopOffset;
 
+
+    public bool isHoldingSelectors()
+    {
+        return (rightSelectButtonState != 0 && leftSelectButtonState != 0);
+    }
     void Update()
     {
         rightSelectButtonState = rightControllerReference.action.ReadValue<float>();
         leftSelectButtonState = leftControllerReference.action.ReadValue<float>();
 
-        if (((rightSelectButtonState != 0 && leftSelectButtonState != 0) && IsSelectDown == false) || Input.GetKeyDown(KeyCode.Space))
+
+        if ((isHoldingSelectors() && IsSelectDown == false) || Input.GetKeyDown(KeyCode.Space))
         {
             GameObject poop = Instantiate(TemplatePoop);
             //poop.transform.SetParent(TemplatePoop.transform);

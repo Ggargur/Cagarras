@@ -8,17 +8,17 @@ public class SinPosition : MonoBehaviour
     private Vector3 originalPos;
     public float Speed = 1;
     public float Amplitude = 0.5f;
-    public bool HorizontalTraveling, VerticalTraveling;
+    public bool HorizontalTraveling, VerticalTraveling, ZTraveling;
 
     void Start()
     {
-        originalPos = transform.position;   
+        originalPos = transform.localPosition;
     }
 
     void Update()
     {
         time += Time.deltaTime * Speed;
         var sin = Mathf.Sin(time) * Amplitude;
-        transform.position = originalPos - new Vector3(HorizontalTraveling?sin:0 , VerticalTraveling?sin:0);
+        transform.localPosition = originalPos - new Vector3(HorizontalTraveling ? sin : 0, VerticalTraveling ? sin : 0, ZTraveling ? sin : 0);
     }
 }

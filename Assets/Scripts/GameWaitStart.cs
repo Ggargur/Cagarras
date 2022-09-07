@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameWaitStart : MonoBehaviour
 {
     public Flying Player;
+    public Pooper Pooper;
     [SerializeField]  public GameObject Audios;
     public List<GameObject> Objectives;
     private int _counter;
@@ -28,10 +29,11 @@ public class GameWaitStart : MonoBehaviour
 
     void Update()
     {
-        if (Player.IsFlappingWings() != Vector3.zero && _counter < 3)
-            _counter++;
-        if (_counter >= 3 || Input.GetKeyDown(KeyCode.Space))
+        if (Pooper.isHoldingSelectors() || Input.GetKeyDown(KeyCode.Space))
             GameStart(true);
-
+        //if (Player.IsFlappingWings() != Vector3.zero && _counter < 3)
+        //    _counter++;
+        //if (_counter >= 3 || )
+        //    GameStart(true);
     }
 }

@@ -19,11 +19,11 @@ public class Head : MonoBehaviour
     {
         if (isHeadEnabled)
         {
-        rootObject.position = transform.position + headBodyOffset;
-        rootObject.forward = Vector3.ProjectOnPlane(followObject.transform.forward, Vector3.up).normalized;
+            rootObject.position = transform.position + headBodyOffset;
+            rootObject.forward = Vector3.ProjectOnPlane(followObject.transform.forward, Vector3.up).normalized;
 
-        transform.position = followObject.transform.TransformPoint(positionOffset);
-        transform.rotation = followObject.transform.rotation * Quaternion.Euler(rotationOffset);
+            transform.position = followObject.transform.TransformPoint(positionOffset);
+            transform.rotation = followObject.transform.rotation * Quaternion.Euler(rotationOffset);
         }
     }
 }
