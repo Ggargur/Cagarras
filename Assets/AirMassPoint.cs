@@ -34,8 +34,8 @@ public class AirMassPoint : MonoBehaviour
     }
     private void Update()
     {
-        if (Interval <= trailRenderer.time)
-            trailRenderer.time = Interval;
+        //if (Interval <= trailRenderer.time)
+        //    trailRenderer.time = Interval;
     }
     private void OnDrawGizmosSelected()
     {
@@ -47,11 +47,11 @@ public class AirMassPoint : MonoBehaviour
                 Destroy(transform.GetChild(i).gameObject);
             }
             _children.Clear();
-            var firstchild = new GameObject("First Tangent").transform;
+            var firstchild = new GameObject("First Tangent", typeof(DontMoveWithParent)).transform;
             firstchild.parent = transform;
             firstchild.localPosition = Vector3.zero;    
             _children.Add(firstchild);
-            var secondchild = new GameObject("Second Tangent").transform;
+            var secondchild = new GameObject("Second Tangent", typeof(DontMoveWithParent)).transform;
             secondchild.parent = transform;
             secondchild.localPosition = Vector3.zero;    
             _children.Add(secondchild);
@@ -76,7 +76,10 @@ public class AirMassPoint : MonoBehaviour
 
         if (Next == null) return;
 
-        Handles.DrawBezier(transform.position, Next.transform.position, FirstTangent, SecondTangent, Color, Texture, Width);
+        if(trailOriginalPos != Vector3.zero)
+            Handles.DrawBezier(trailOriginalPos, Next.transform.position, FirstTangent, SecondTangent, Color, Texture, Width);
+        else
+            Handles.DrawBezier(transform.position, Next.transform.position, FirstTangent, SecondTangent, Color, Texture, Width);
     }
 
     IEnumerator MoveTrail()
