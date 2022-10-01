@@ -8,7 +8,7 @@ public class Flying : MonoBehaviour
 {
     [Header("Values")]
     public float wingFlapForce = 8f;
-    [SerializeField] float dragForce = 0.1f;
+    public float dragForce = 0.1f;
     [SerializeField] float minForce = 1;
     [SerializeField] float minTimeBetweenFlaps = 0f;
     public float constantSpeed = 1f;
@@ -54,11 +54,11 @@ public class Flying : MonoBehaviour
         if (!IsGamePaused)
         {
             var axisL = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger,OVRInput.Controller.LHand);
-            var axisR = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RHand);
+            var axisR = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RHand); // Dont do anything at this time
             var axis = axisL > 0 || axisR > 0 ? (axisL + axisR) / 2.0f : 0;
             var  velocitythisframe = constantSpeed * (axis + 1.0f);
             //print(velocitythisframe);
-            SpeedParticles.SetActive(axis > 0);
+            //SpeedParticles.SetActive(axis > 0);
 
             if (trackingReference.forward.y > 0)
                 _rigidbody.velocity = (new Vector3(trackingReference.forward.x, 0, trackingReference.forward.z) * velocitythisframe);
@@ -84,10 +84,14 @@ public class Flying : MonoBehaviour
                 }
             }
             if (useGravity)
-                _rigidbody.AddForce(new Vector3(0, -dragForce));
+                _rigidbody.AddForce(new Vector3(0, -dragForce),ForceMode.VelocityChange);
         }
     }
 
+    public void ActivateSpeedEffect(bool state)
+    {
+        SpeedParticles.SetActive(state);
+    }
     IEnumerator UpdateCooldown()
     {
         CanFlap = false;
@@ -95,8 +99,13 @@ public class Flying : MonoBehaviour
         CanFlap = true;
     }
 
-    private void GainAltitude()
+    public void GainAltitude()
     {
         _rigidbody.AddForce(trueVelocity * wingFlapForce);
+    }
+
+    public void GainAltitude(Vector3 force)
+    {
+        _rigidbody.AddForce(force);
     }
 }

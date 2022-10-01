@@ -12,6 +12,7 @@ public static class AudioManager
         PickupObject,
         DropObject,
         Damage,
+        Eat,
     }
 
     public static GameObject PlayRandomSound(Sound sound)
