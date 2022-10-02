@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4141585124004347432}
   - component: {fileID: 4141585124004347431}
   - component: {fileID: 4141585124004347428}
+  - component: {fileID: 9057853562961884926}
+  - component: {fileID: 8765146792657011684}
   m_Layer: 0
   m_Name: Hot air Point
   m_TagString: Untagged
@@ -42,7 +44,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4141585124004347435}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 0.89
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -53,7 +55,7 @@ ParticleSystem:
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 1
+  useRigidbodyForVelocity: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -107,7 +109,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -117,7 +119,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -661,11 +663,11 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 12
     angle: 24.64
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 1
+    radiusThickness: 0.33
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
@@ -748,7 +750,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 4.48
       mode: 0
       spread: 0
       speed:
@@ -867,7 +869,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -920,7 +922,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.21
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4820,16 +4822,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsChained: 0
   Next: {fileID: 0}
-  FirstTangent: {x: -87.91693, y: 145.82686, z: -1847.6141}
-  SecondTangent: {x: -110.18693, y: 132.54686, z: -1843.2141}
-  ThirdTangent: {x: 0, y: 0, z: 0}
+  FirstTangent: {x: 1283.128, y: 148.66685, z: 172.04785}
+  SecondTangent: {x: 1279.6537, y: 146.82686, z: 169.76625}
+  ThirdTangent: {x: 1279.6537, y: 153.38686, z: 169.76625}
   BackAndForth: 1
-  Interval: 1
-  Frequency: 1
+  Interval: 0.2
+  Frequency: 2
   Radius: 1
   Width: 1
   Color: {r: 0, g: 1, b: 0.0054223537, a: 1}
   Texture: {fileID: 0}
+  _collider: {fileID: 0}
 --- !u!96 &4141585124004347428
 TrailRenderer:
   serializedVersion: 2
@@ -4879,21 +4882,57 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.026237488
-        value: 0.15929222
+        time: 0
+        value: 0.86725736
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.2181383
+        value: 1
+        inSlope: 0.6138909
+        outSlope: 0.6138909
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.80385387
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.45802093
+        value: 0.83539814
+        inSlope: 1.5893986
+        outSlope: 1.5893986
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.40624577
+        outWeight: 0.71929836
+      - serializedVersion: 3
+        time: 0.671664
+        value: 1
+        inSlope: -0.69104266
+        outSlope: -0.69104266
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.71929836
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8740629
+        value: 0.8442477
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 0, b: 0, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0.30980393}
+      key1: {r: 1, g: 1, b: 1, a: 0.6901961}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4908,7 +4947,7 @@ TrailRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 0
+      atime0: 4626
       atime1: 65535
       atime2: 65535
       atime3: 0
@@ -4919,8 +4958,8 @@ TrailRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 60
+    numCapVertices: 30
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -4928,3 +4967,31 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &9057853562961884926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4141585124004347435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2d2d8dd10459348b229eb75bab9f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedIncrease: 1.5
+  HeightIncrease: -100
+  PlayerMovement: {fileID: 0}
+--- !u!65 &8765146792657011684
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4141585124004347435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.1652164, y: 23.079453, z: 5}
+  m_Center: {x: 2.0826082, y: 11.539726, z: 2.5}

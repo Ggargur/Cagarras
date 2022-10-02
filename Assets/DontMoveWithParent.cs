@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[ExecuteAlways]
 public class DontMoveWithParent : MonoBehaviour
 {
     Vector3 savedPosition;
 
-    [Tooltip("When DontMoveWithParent is on, Ctrl+Z doesn't work for movement changes on this GameObject.")]
     public bool dontMoveWithParent = true;
     bool lastDontMoveWithParent = true;
 

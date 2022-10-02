@@ -26,8 +26,12 @@ public class AirMassPoint : MonoBehaviour
     [SerializeField] Color Color;
     [SerializeField] Texture2D Texture;
 
+    [Header("Refences")]
+    [SerializeField] BoxCollider _collider;
+
     private List<Transform> _children = new List<Transform>();
 
+    #region Unity Methods
     void Start()
     {
         trailRenderer = GetComponent<TrailRenderer>();
@@ -90,6 +94,8 @@ public class AirMassPoint : MonoBehaviour
 
         if (Next == null && IsChained) return;
 
+        AjustCollider();
+
         if (IsChained)
         {
             if (trailOriginalPos != Vector3.zero)
@@ -105,7 +111,34 @@ public class AirMassPoint : MonoBehaviour
                 Handles.DrawBezier(transform.position, ThirdTangent, FirstTangent, SecondTangent, Color, Texture, Width);
         }
     }
+    #endregion
 
+    #region Aux Methods
+    void AjustCollider()
+    {
+        float smallestx = 0f, biggestx = 0f, sizex;
+        float smallesty = 0f, biggesty = 0f, sizey;
+        float smallestz = 0f, biggestz = 0f, sizez;
+
+        foreach (var ch in _children)
+        {
+            if (ch.localPosition.x > biggestx) biggestx = ch.localPosition.x;
+            if (ch.localPosition.x < smallestx) smallestx = ch.localPosition.x;
+
+            if (ch.localPosition.y > biggesty) biggesty = ch.localPosition.y;
+            if (ch.localPosition.y < smallesty) smallesty = ch.localPosition.y;
+
+            if (ch.localPosition.z > biggestz) biggestz = ch.localPosition.z;
+            if (ch.localPosition.z < smallestz) smallestz = ch.localPosition.z;
+        }
+
+        sizex = biggestx - smallestx;
+        sizey = biggesty - smallesty;
+        sizez = biggestz - smallestz;
+
+        _collider.size = new Vector3(Mathf.Abs(sizex), Mathf.Abs(sizey), Mathf.Abs(sizez)); ;
+        _collider.center = new Vector3(sizex, sizey, sizez) / 2;
+    }
     IEnumerator MoveTrail()
     {
         if (Next == null && IsChained) yield break;
@@ -157,4 +190,5 @@ public class AirMassPoint : MonoBehaviour
 
         return Mathf.Pow(inverset, 3) * trailOriginalPos + 3 * Mathf.Pow(inverset, 2) * t * FirstTangent + 3 * inverset * tSqrd * SecondTangent + tCbud * ThirdTangent;
     }
+    #endregion
 }

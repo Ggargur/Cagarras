@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7117190760251316895}
   - component: {fileID: 7117190760251316896}
+  - component: {fileID: 329592905}
   m_Layer: 0
   m_Name: Game End Manager
   m_TagString: Untagged
@@ -38,10 +39,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7117190760251316897}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b43257812353c44781a516067570ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wayScript: {fileID: 0}
   poopObjectiveScript: {fileID: 0}
+--- !u!114 &329592905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117190760251316897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb77d7f561c2a124c9ddf866b6e32312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxTime: 2
+  IsOn: 0
+  HasGameEnded: 0
+  HasReachedGoal: 0
+  _lastGameScore: -1
