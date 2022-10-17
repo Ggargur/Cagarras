@@ -7,8 +7,11 @@ public class FinishingFlag : MonoBehaviour
     [SerializeField] CountDownTimer Timer;
     private GameObject _audioSource;
 
+
     private void OnTriggerEnter(Collider other)
     {
+        if (Timer.HasReachedGoal) return;
+
         Timer.HasReachedGoal = true;
 
         if(_audioSource == null)

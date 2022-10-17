@@ -40,6 +40,7 @@ public class AirMassPoint : MonoBehaviour
     }
     private void Update()
     {
+        UpdateChildren();
         //if (Interval <= trailRenderer.time)
         //    trailRenderer.time = Interval;
     }
@@ -73,6 +74,39 @@ public class AirMassPoint : MonoBehaviour
     }
     void OnDrawGizmos()
     {
+        UpdateChildren();
+        Gizmos.color = Color;
+        Gizmos.DrawSphere(FirstTangent, Radius);
+        Gizmos.DrawSphere(SecondTangent, Radius);
+
+        if (!IsChained)
+            Gizmos.DrawSphere(ThirdTangent, Radius);
+
+        if (Next == null && IsChained) return;
+
+        AjustCollider();
+
+        //if (IsChained)
+        //{
+        //    if (trailOriginalPos != Vector3.zero)
+        //        Handles.DrawBezier(trailOriginalPos, Next.transform.position, FirstTangent, SecondTangent, Color, Texture, Width);
+        //    else
+        //        Handles.DrawBezier(transform.position, Next.transform.position, FirstTangent, SecondTangent, Color, Texture, Width);
+        //}
+        //else
+        //{
+        //    if (trailOriginalPos != Vector3.zero)
+        //        Handles.DrawBezier(trailOriginalPos, ThirdTangent, FirstTangent, SecondTangent, Color, Texture, Width);
+        //    else
+        //        Handles.DrawBezier(transform.position, ThirdTangent, FirstTangent, SecondTangent, Color, Texture, Width);
+        //}
+    }
+    #endregion
+
+    #region Aux Methods
+
+    void UpdateChildren()
+    {
         if (_children.Count < 2)
         {
             var count = transform.childCount;
@@ -85,37 +119,11 @@ public class AirMassPoint : MonoBehaviour
         FirstTangent = _children[0].transform.position;
         SecondTangent = _children[1].transform.position;
         ThirdTangent = _children[2].transform.position;
-        Gizmos.color = Color;
-        Gizmos.DrawSphere(FirstTangent, Radius);
-        Gizmos.DrawSphere(SecondTangent, Radius);
-
-        if (!IsChained)
-            Gizmos.DrawSphere(ThirdTangent, Radius);
-
-        if (Next == null && IsChained) return;
-
-        AjustCollider();
-
-        if (IsChained)
-        {
-            if (trailOriginalPos != Vector3.zero)
-                Handles.DrawBezier(trailOriginalPos, Next.transform.position, FirstTangent, SecondTangent, Color, Texture, Width);
-            else
-                Handles.DrawBezier(transform.position, Next.transform.position, FirstTangent, SecondTangent, Color, Texture, Width);
-        }
-        else
-        {
-            if (trailOriginalPos != Vector3.zero)
-                Handles.DrawBezier(trailOriginalPos, ThirdTangent, FirstTangent, SecondTangent, Color, Texture, Width);
-            else
-                Handles.DrawBezier(transform.position, ThirdTangent, FirstTangent, SecondTangent, Color, Texture, Width);
-        }
     }
-    #endregion
-
-    #region Aux Methods
     void AjustCollider()
     {
+        if (_collider == null) return;
+
         float smallestx = 0f, biggestx = 0f, sizex;
         float smallesty = 0f, biggesty = 0f, sizey;
         float smallestz = 0f, biggestz = 0f, sizez;
@@ -136,8 +144,11 @@ public class AirMassPoint : MonoBehaviour
         sizey = biggesty - smallesty;
         sizez = biggestz - smallestz;
 
-        _collider.size = new Vector3(Mathf.Abs(sizex), Mathf.Abs(sizey), Mathf.Abs(sizez)); ;
+        var newsize = new Vector3(Mathf.Abs(sizex), Mathf.Abs(sizey), Mathf.Abs(sizez));
         _collider.center = new Vector3(sizex, sizey, sizez) / 2;
+
+        //if (!(newsize.magnitude > _collider.size.magnitude)) return;
+        _collider.size = newsize;
     }
     IEnumerator MoveTrail()
     {
